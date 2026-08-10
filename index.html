@@ -208,6 +208,12 @@
     </head>
     <body class="font-typewriter antialiased overflow-x-hidden wood-wall min-h-screen flex flex-col">
 
+        <audio id="background-audio" loop preload="auto" class="hidden">
+            <source src="koboi-bg.mp3" type="audio/mpeg">
+            <source src="https://cdn.pixabay.com/download/audio/2023/07/08/audio_0f4d7ac32a.mp3?filename=western-cowboy-old-town-123422.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
         <!-- LOADING SCREEN -->
         <div id="loader-screen" class="fixed inset-0 bg-west-darkwood z-[100] flex flex-col items-center justify-center transition-opacity duration-700">
             <div class="relative flex flex-col items-center">
@@ -268,6 +274,10 @@
                     <a href="#faq" class="hover:text-west-denim transition">FAQ</a>
                     <a href="#contact" class="hover:text-west-denim transition">KONTAK</a>
                 </div>
+
+                <button id="sound-toggle" class="hidden md:inline-flex items-center gap-2 font-wood text-xs sm:text-sm bg-west-darkwood/70 hover:bg-west-maroon/40 text-west-beige px-4 py-2 rounded-full border-2 border-west-tan/70 shadow-[0_6px_12px_rgba(0,0,0,0.25)] transition">
+                    🔊 MAIN
+                </button>
             </div>
 
             <div id="mobile-menu" class="hidden md:hidden flex-col gap-3 pt-3 pb-2 border-t border-west-tan/20 mt-2 font-wood text-xs sm:text-sm text-west-parchment text-center">
@@ -628,6 +638,9 @@
             let popupCp = null;
             let linkForm = null;
             let linkJuknis = null;
+            let backgroundAudio = null;
+            let soundToggleButton = null;
+            let isAudioInitialized = false;
 
             function slugify(value) {
                 return value.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -750,6 +763,51 @@
 
                 initModalElements();
                 renderCompetitionBoard();
+
+                backgroundAudio = document.getElementById('background-audio');
+                soundToggleButton = document.getElementById('sound-toggle');
+
+                function setSoundButtonState(isPlaying) {
+                    if (!soundToggleButton) return;
+                    soundToggleButton.innerText = isPlaying ? '🔇 MATI' : '🔊 MAIN';
+                    soundToggleButton.setAttribute('aria-pressed', String(isPlaying));
+                }
+
+                function initBackgroundAudio() {
+                    if (isAudioInitialized || !backgroundAudio) return;
+                    isAudioInitialized = true;
+                    backgroundAudio.volume = 0.45;
+                    backgroundAudio.addEventListener('play', () => setSoundButtonState(true));
+                    backgroundAudio.addEventListener('pause', () => setSoundButtonState(false));
+                    backgroundAudio.addEventListener('ended', () => setSoundButtonState(false));
+                }
+
+                function toggleBackgroundSound() {
+                    if (!backgroundAudio) return;
+                    initBackgroundAudio();
+                    if (backgroundAudio.paused) {
+                        backgroundAudio.play().catch(() => {
+                            /* Autoplay may be blocked until the user interacts. */
+                        });
+                    } else {
+                        backgroundAudio.pause();
+                    }
+                }
+
+                if (soundToggleButton) {
+                    soundToggleButton.addEventListener('click', () => {
+                        toggleBackgroundSound();
+                    });
+                }
+
+                if (backgroundAudio) {
+                    setSoundButtonState(!backgroundAudio.paused && !backgroundAudio.ended);
+                    const handleFirstInteraction = () => {
+                        initBackgroundAudio();
+                        document.body.removeEventListener('click', handleFirstInteraction);
+                    };
+                    document.body.addEventListener('click', handleFirstInteraction, { once: true });
+                }
 
                 const mobileMenuButton = document.getElementById('mobile-menu-button');
                 const mobileMenu = document.getElementById('mobile-menu');
