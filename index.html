@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +10,9 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rye&family=Sancreek&family=Special+Elite&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Rye&family=Sancreek&family=Special+Elite&display=swap"
+        rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
@@ -42,7 +44,7 @@
             background-color: #241018;
             color: #f6ebd8;
         }
-        
+
         .wood-wall {
             background-color: #2a1721;
             background-image: url('2.webp');
@@ -56,7 +58,7 @@
         .hero-surface {
             background-image:
                 linear-gradient(135deg, rgba(42, 23, 33, 0.35), rgba(42, 23, 33, 0.75)),
-                    url('FLASH.webp');
+                url('FLASH.webp');
             background-size: cover, cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -71,27 +73,27 @@
 
         .competition-board {
             background-color: #66120a;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(0,0,0,0.3) 1px, transparent 1px),
-                radial-gradient(circle at 80% 70%, rgba(0,0,0,0.3) 1px, transparent 1px),
-                linear-gradient(to right, rgba(0,0,0,0.15) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0,0,0,0.1) 1px, transparent 1px);
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(0, 0, 0, 0.3) 1px, transparent 1px),
+                radial-gradient(circle at 80% 70%, rgba(0, 0, 0, 0.3) 1px, transparent 1px),
+                linear-gradient(to right, rgba(0, 0, 0, 0.15) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
             background-size: 12px 12px, 12px 12px, 30px 100%, 100% 30px;
-            box-shadow: inset 0 0 100px rgba(0,0,0,0.9), 0 20px 50px rgba(0,0,0,0.9);
+            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.9), 0 20px 50px rgba(0, 0, 0, 0.9);
             border: 6px solid #60241E;
             position: relative;
         }
 
         .wanted-poster {
             background: #e8d8b7;
-            background-image: 
+            background-image:
                 radial-gradient(#d4bd8c 10%, transparent 11%),
                 radial-gradient(#c2aa78 10%, transparent 11%);
             background-size: 8px 8px;
             background-position: 0 0, 4px 4px;
             color: #2b1b12;
-            box-shadow: 
-                0 10px 20px rgba(0,0,0,0.6),
+            box-shadow:
+                0 10px 20px rgba(0, 0, 0, 0.6),
                 inset 0 0 30px rgba(123, 30, 58, 0.2),
                 0 0 0 2px #7b1e3a,
                 0 0 0 4px #5d2336;
@@ -107,13 +109,13 @@
         .modal-content.wanted-poster {
             background-image: none;
             background-color: #e8d8b7;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
         }
 
         @media (hover: hover) and (pointer: fine) {
             .wanted-poster:hover {
                 transform: translateY(-10px) rotate(0deg) scale(1.04) !important;
-                box-shadow: 0 20px 35px rgba(0,0,0,0.8), inset 0 0 15px rgba(123, 30, 58, 0.2), 0 0 0 2px #5d7a9b;
+                box-shadow: 0 20px 35px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(123, 30, 58, 0.2), 0 0 0 2px #5d7a9b;
                 z-index: 30;
             }
         }
@@ -123,7 +125,7 @@
             height: 16px;
             background: radial-gradient(circle at 30% 30%, #c0c0c0, #2a2a2a);
             border-radius: 50%;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.8), inset 0 -2px 4px rgba(0,0,0,0.5);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8), inset 0 -2px 4px rgba(0, 0, 0, 0.5);
             position: absolute;
             top: -6px;
             left: 50%;
@@ -133,10 +135,23 @@
 
         /* Animasi Kuda Berlari / Gallop */
         @keyframes cowboyGallop {
-            0%, 100% { transform: translateY(0px); }
-            25% { transform: translateY(-10px) rotate(-1deg); }
-            50% { transform: translateY(0px); }
-            75% { transform: translateY(-6px) rotate(1deg); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            25% {
+                transform: translateY(-10px) rotate(-1deg);
+            }
+
+            50% {
+                transform: translateY(0px);
+            }
+
+            75% {
+                transform: translateY(-6px) rotate(1deg);
+            }
         }
 
         .gallop-anim {
@@ -144,9 +159,25 @@
         }
 
         /* Modal Animations */
-        @keyframes popupScaleIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        .modal-active { display: flex !important; }
-        .modal-active .modal-content { animation: popupScaleIn 0.3s forwards; }
+        @keyframes popupScaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-active {
+            display: flex !important;
+        }
+
+        .modal-active .modal-content {
+            animation: popupScaleIn 0.3s forwards;
+        }
 
         .western-star {
             position: absolute;
@@ -159,14 +190,24 @@
         }
 
         @keyframes twinkle {
-            0%, 100% { transform: scale(0.8); opacity: 0.45; }
-            50% { transform: scale(1.15); opacity: 1; }
+
+            0%,
+            100% {
+                transform: scale(0.8);
+                opacity: 0.45;
+            }
+
+            50% {
+                transform: scale(1.15);
+                opacity: 1;
+            }
         }
 
         .navbar-logo-frame:hover {
             transform: translateY(-2px) rotate(-1deg) scale(1.03);
-            box-shadow: inset 0 0 0 2px #7b1e3a, 0 10px 22px rgba(0,0,0,0.3), 0 0 0 4px rgba(93, 35, 54, 0.25);
+            box-shadow: inset 0 0 0 2px #7b1e3a, 0 10px 22px rgba(0, 0, 0, 0.3), 0 0 0 4px rgba(93, 35, 54, 0.25);
         }
+
         .navbar-hidden {
             transform: translateY(-100%);
         }
@@ -181,6 +222,7 @@
             z-index: 0;
             --stats-border-dark-fallback: #4c0f0a;
         }
+
         .stats-section::before {
             content: '';
             position: absolute;
@@ -191,75 +233,102 @@
             z-index: 1;
             pointer-events: none;
             border-radius: 0.5rem;
-            background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 30%, rgba(0,0,0,0.06) 60%, transparent 100%);
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.25) 30%, rgba(0, 0, 0, 0.06) 60%, transparent 100%);
             mix-blend-mode: multiply;
         }
-        .stats-section .max-w-7xl { position: relative; z-index: 2; }
-        .stats-section.border-west-maroon { border-color: color-mix(in srgb, #66120a 70%, black 30%); }
-        .stats-section[style*="--stats-border-dark"] { border-color: var(--stats-border-dark, var(--stats-border-dark-fallback)) !important; }
-        .popup-contact-brown { color: #60241E !important; }
+
+        .stats-section .max-w-7xl {
+            position: relative;
+            z-index: 2;
+        }
+
+        .stats-section.border-west-maroon {
+            border-color: color-mix(in srgb, #66120a 70%, black 30%);
+        }
+
+        .stats-section[style*="--stats-border-dark"] {
+            border-color: var(--stats-border-dark, var(--stats-border-dark-fallback)) !important;
+        }
+
+        .popup-contact-brown {
+            color: #60241E !important;
+        }
     </style>
 </head>
+
 <body class="font-typewriter antialiased overflow-x-hidden wood-wall min-h-screen flex flex-col">
 
     <!-- AUDIO BACKGROUND ELEMENT -->
     <audio id="background-audio" loop preload="auto" playsinline style="display:none;">
         <source src="koboi-bg.mp3" type="audio/mpeg">
         <source src="https://codeskulptor-demos.commondatastorage.googleapis.com/desolate_world.mp3" type="audio/mpeg">
-        <source src="https://cdn.pixabay.com/download/audio/2023/07/08/audio_0f4d7ac32a.mp3?filename=western-cowboy-old-town-123422.mp3" type="audio/mpeg">
+        <source
+            src="https://cdn.pixabay.com/download/audio/2023/07/08/audio_0f4d7ac32a.mp3?filename=western-cowboy-old-town-123422.mp3"
+            type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
     <!-- LOADING SCREEN -->
-    <div id="loader-screen" class="fixed inset-0 bg-west-darkwood z-[100] flex flex-col items-center justify-center transition-opacity duration-700">
+    <div id="loader-screen"
+        class="fixed inset-0 bg-west-darkwood z-[100] flex flex-col items-center justify-center transition-opacity duration-700">
         <div class="relative flex flex-col items-center">
             <div class="gallop-anim mb-4 w-48 h-48 md:w-56 md:h-56 flex items-center justify-center">
                 <svg viewBox="0 0 40 40" class="w-full h-full drop-shadow-xl" style="image-rendering: pixelated;">
-                    <ellipse cx="21" cy="38" rx="12" ry="1.5" fill="#1a0e14" opacity="0.6"/>
-                    <path d="M7 19h4v2H9v2H7v4H5v7h2v-4h2v-3h2v-2h2v-2H7v-4z" fill="#fbd038"/>
-                    <path d="M5 21h2v2H5v-2z" fill="#ffd845"/>
-                    <path d="M12 18h11v2H11v2h-1v6h2v3h2v3h1v-3h2v3h1v-3h3v-2h2v-3h2v-2h2v-3h1v-4h-2v-2h-3v-1h-2v1h-2v2h-3v1h-2v1h-3v1z" fill="#ffffff"/>
-                    <path d="M11 20h2v2h-2zm3 6h2v3h-2zm4 0h2v3h-2zm2-2h2v2h-2z" fill="#a0a5ab"/>
-                    <path d="M14 32h1v3h-1zm5 0h1v3h-1zm-4 3h2v1h-2zm5 0h2v1h-2z" fill="#6c737e"/>
-                    <path d="M13 31h1v1h-1zm8 0h1v1h-1z" fill="#ffd845"/>
-                    <path d="M15 16h8v3h-2v3h-2v-3h-2v-1h-2v-2z" fill="#5c2c19"/>
-                    <path d="M17 18h2v5h-2z" fill="#3a1a0e"/>
-                    <path d="M23 15h4v3h-2v1h-2v-4z" fill="#fbd038"/>
-                    <path d="M25 15h4v2h-4zm2 2h3v2h-3zm2 2h2v2h-2z" fill="#ffffff"/>
-                    <path d="M28 17h1v1h-1z" fill="#5c2c19"/>
-                    <path d="M25 18h5v1h-5zm3 1h1v4h-1zm-6 2h5v1h-5z" fill="#201a18"/>
-                    <path d="M19 18h2v6h-2z" fill="#0f4c81"/>
-                    <path d="M18 13h5v4h-5z" fill="#fbd038"/>
-                    <path d="M18 13h2v4h-2zm3 0h2v4h-2z" fill="#1b1b1b"/>
-                    <path d="M17 12h5v2h-5z" fill="#c0282b"/>
-                    <path d="M16 13h2v2h-2z" fill="#9e1f22"/>
-                    <path d="M19 10h3v2h-3z" fill="#f3b183"/>
-                    <path d="M18 10h2v2h-2z" fill="#1b1b1b"/>
-                    <path d="M17 8h7v2h-7z" fill="#ffffff"/>
-                    <path d="M18 6h5v2h-5z" fill="#ffffff"/>
-                    <path d="M18 8h5v1h-5z" fill="#d0d0d0"/>
+                    <ellipse cx="21" cy="38" rx="12" ry="1.5" fill="#1a0e14" opacity="0.6" />
+                    <path d="M7 19h4v2H9v2H7v4H5v7h2v-4h2v-3h2v-2h2v-2H7v-4z" fill="#fbd038" />
+                    <path d="M5 21h2v2H5v-2z" fill="#ffd845" />
+                    <path
+                        d="M12 18h11v2H11v2h-1v6h2v3h2v3h1v-3h2v3h1v-3h3v-2h2v-3h2v-2h2v-3h1v-4h-2v-2h-3v-1h-2v1h-2v2h-3v1h-2v1h-3v1z"
+                        fill="#ffffff" />
+                    <path d="M11 20h2v2h-2zm3 6h2v3h-2zm4 0h2v3h-2zm2-2h2v2h-2z" fill="#a0a5ab" />
+                    <path d="M14 32h1v3h-1zm5 0h1v3h-1zm-4 3h2v1h-2zm5 0h2v1h-2z" fill="#6c737e" />
+                    <path d="M13 31h1v1h-1zm8 0h1v1h-1z" fill="#ffd845" />
+                    <path d="M15 16h8v3h-2v3h-2v-3h-2v-1h-2v-2z" fill="#5c2c19" />
+                    <path d="M17 18h2v5h-2z" fill="#3a1a0e" />
+                    <path d="M23 15h4v3h-2v1h-2v-4z" fill="#fbd038" />
+                    <path d="M25 15h4v2h-4zm2 2h3v2h-3zm2 2h2v2h-2z" fill="#ffffff" />
+                    <path d="M28 17h1v1h-1z" fill="#5c2c19" />
+                    <path d="M25 18h5v1h-5zm3 1h1v4h-1zm-6 2h5v1h-5z" fill="#201a18" />
+                    <path d="M19 18h2v6h-2z" fill="#0f4c81" />
+                    <path d="M18 13h5v4h-5z" fill="#fbd038" />
+                    <path d="M18 13h2v4h-2zm3 0h2v4h-2z" fill="#1b1b1b" />
+                    <path d="M17 12h5v2h-5z" fill="#c0282b" />
+                    <path d="M16 13h2v2h-2z" fill="#9e1f22" />
+                    <path d="M19 10h3v2h-3z" fill="#f3b183" />
+                    <path d="M18 10h2v2h-2z" fill="#1b1b1b" />
+                    <path d="M17 8h7v2h-7z" fill="#ffffff" />
+                    <path d="M18 6h5v2h-5z" fill="#ffffff" />
+                    <path d="M18 8h5v1h-5z" fill="#d0d0d0" />
                 </svg>
             </div>
-            
-            <p class="font-wood text-lg md:text-xl text-west-denim tracking-widest uppercase mb-1">MEMUAT FRONTIER SALOON...</p>
-            <p id="loader-percentage" class="text-xs font-typewriter text-west-parchment/70 tracking-wider">0% PREPARED</p>
+
+            <p class="font-wood text-lg md:text-xl text-west-denim tracking-widest uppercase mb-1">MEMUAT FRONTIER
+                SALOON...</p>
+            <p id="loader-percentage" class="text-xs font-typewriter text-west-parchment/70 tracking-wider">0% PREPARED
+            </p>
         </div>
     </div>
 
     <!-- STICKY NAVBAR -->
-    <nav class="sticky top-0 z-40 bg-west-darkwood/95 backdrop-blur-md border-b-2 sm:border-b-4 border-west-denim px-4 lg:px-8 py-0 sm:py-0.5 shadow-xl">
+    <nav
+        class="sticky top-0 z-40 bg-west-darkwood/95 backdrop-blur-md border-b-2 sm:border-b-4 border-west-denim px-4 lg:px-8 py-0 sm:py-0.5 shadow-xl">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <a href="#" class="flex items-center gap-2 sm:gap-3">
                 <div class="navbar-logo-frame">
-                    <img src="1000502650.webp" alt="FLASH XXV Logo" class="w-10 sm:w-14 md:w-16 h-auto object-contain drop-shadow-lg">
+                    <img src="1000502650.webp" alt="FLASH XXV Logo"
+                        class="w-10 sm:w-14 md:w-16 h-auto object-contain drop-shadow-lg">
                 </div>
-                <img src="Proyek Baru 300 [DDDA953].webp" alt="ICON FLASH FONT VER WEB" class="w-28 sm:w-32 md:w-36 h-auto object-contain drop-shadow-lg transform translate-y-[2px]">
+                <img src="Proyek Baru 300 [DDDA953].webp" alt="ICON FLASH FONT VER WEB"
+                    class="w-28 sm:w-32 md:w-36 h-auto object-contain drop-shadow-lg transform translate-y-[2px]">
             </a>
 
-            <button id="mobile-menu-button" aria-label="Toggle Menu" class="md:hidden text-west-beige hover:text-west-denim focus:outline-none p-0.5">
+            <button id="mobile-menu-button" aria-label="Toggle Menu"
+                class="md:hidden text-west-beige hover:text-west-denim focus:outline-none p-0.5">
                 <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
-                    <path id="hamburger-icon" fill-rule="evenodd" clip-rule="evenodd" d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/>
-                    <path id="close-icon" class="hidden" fill-rule="evenodd" clip-rule="evenodd" d="M18.3 5.71a1 1 0 0 0-1.42 0L12 10.59 7.12 5.71a1 1 0 0 0-1.42 1.42L10.59 12l-4.89 4.88a1 1 0 1 0 1.42 1.42L12 13.41l4.88 4.89a1 1 0 0 0 1.42-1.42L13.41 12l4.89-4.88a1 1 0 0 0 0-1.41z"/>
+                    <path id="hamburger-icon" fill-rule="evenodd" clip-rule="evenodd"
+                        d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
+                    <path id="close-icon" class="hidden" fill-rule="evenodd" clip-rule="evenodd"
+                        d="M18.3 5.71a1 1 0 0 0-1.42 0L12 10.59 7.12 5.71a1 1 0 0 0-1.42 1.42L10.59 12l-4.89 4.88a1 1 0 1 0 1.42 1.42L12 13.41l4.88 4.89a1 1 0 0 0 1.42-1.42L13.41 12l4.89-4.88a1 1 0 0 0 0-1.41z" />
                 </svg>
             </button>
 
@@ -272,7 +341,8 @@
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden flex-col gap-3 pt-3 pb-2 border-t border-west-tan/20 mt-2 font-wood text-xs sm:text-sm text-west-parchment text-center">
+        <div id="mobile-menu"
+            class="hidden md:hidden flex-col gap-3 pt-3 pb-2 border-t border-west-tan/20 mt-2 font-wood text-xs sm:text-sm text-west-parchment text-center">
             <a href="#about" class="mobile-nav-link py-1.5 hover:text-west-denim transition">TENTANG</a>
             <a href="#schedule" class="mobile-nav-link py-1.5 hover:text-west-denim transition">JADWAL</a>
             <a href="#wanted-board" class="mobile-nav-link py-1.5 hover:text-west-denim transition">LOMBA</a>
@@ -282,43 +352,53 @@
     </nav>
 
     <!-- HERO SECTION -->
-    <header class="hero-surface relative min-h-[85vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden border-b-8 border-west-maroon py-12">
+    <header
+        class="hero-surface relative min-h-[85vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden border-b-8 border-west-maroon py-12">
         <div class="absolute inset-0 z-0 pointer-events-none opacity-40 mix-blend-overlay"
             style="background-image: radial-gradient(circle at center, rgba(123, 30, 58, 0.5) 0%, rgba(42, 23, 33, 0.95) 80%), url('https://www.transparenttextures.com/patterns/aged-paper.webp'); background-size: cover, auto;">
         </div>
 
-        <div class="absolute z-0 w-80 h-80 sm:w-[450px] sm:h-[450px] bg-west-maroon/30 rounded-full blur-3xl pointer-events-none"></div>
+        <div
+            class="absolute z-0 w-80 h-80 sm:w-[450px] sm:h-[450px] bg-west-maroon/30 rounded-full blur-3xl pointer-events-none">
+        </div>
 
         <div class="western-star left-[5%] top-[25%] hidden sm:block"></div>
         <div class="western-star right-[5%] top-[25%] hidden sm:block" style="animation-delay: 1.5s;"></div>
 
         <div class="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center justify-center gap-6">
-            <div class="inline-flex items-center gap-2 px-5 py-1.5 border border-west-tan/40 text-west-tan text-xs sm:text-sm tracking-[0.25em] font-wood uppercase bg-west-darkwood/60 rounded-full backdrop-blur-sm shadow-md">
+            <div
+                class="inline-flex items-center gap-2 px-5 py-1.5 border border-west-tan/40 text-west-tan text-xs sm:text-sm tracking-[0.25em] font-wood uppercase bg-west-darkwood/60 rounded-full backdrop-blur-sm shadow-md">
                 ★ SMA NEGERI MODAL BANGSA ★
             </div>
 
             <div class="relative group my-2 cursor-pointer transition transform hover:scale-105 duration-500">
-                <img src="ICON FLASH FONT [CA3E99F].webp" alt="FLASH XXV Logo" 
+                <img src="ICON FLASH FONT [CA3E99F].webp" alt="FLASH XXV Logo"
                     class="w-96 sm:w-[36rem] md:w-[42rem] lg:w-[48rem] h-auto drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)] object-contain"
                     onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-80 sm:w-96 h-80 sm:h-96 border-4 border-west-tan bg-west-maroon/40 rounded-full flex flex-col items-center justify-center p-6 shadow-2xl backdrop-blur-md\'><span class=\'font-western text-6xl text-west-beige drop-shadow-md\'>25</span><span class=\'font-wood text-sm text-west-tan tracking-widest mt-2\'>FLASH LOGO</span></div>';">
             </div>
 
-            <div class="hero-buttons-container flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md px-4 mt-2">
-                <a href="#wanted-board" class="w-full sm:w-auto font-wood text-sm sm:text-base bg-west-denim/95 hover:bg-blue-800 text-white px-8 py-3.5 rounded-full border border-west-tan/60 shadow-[0_6px_16px_rgba(0,0,0,0.35)] transition-all transform hover:-translate-y-1 hover:shadow-2xl flex items-center justify-center gap-2">
+            <div
+                class="hero-buttons-container flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md px-4 mt-2">
+                <a href="#wanted-board"
+                    class="w-full sm:w-auto font-wood text-sm sm:text-base bg-west-denim/95 hover:bg-blue-800 text-white px-8 py-3.5 rounded-full border border-west-tan/60 shadow-[0_6px_16px_rgba(0,0,0,0.35)] transition-all transform hover:-translate-y-1 hover:shadow-2xl flex items-center justify-center gap-2">
                     <span>DAFTAR SEKARANG</span>
                 </a>
 
-                <a href="#schedule" class="w-full sm:w-auto font-wood text-sm sm:text-base bg-west-darkwood/70 hover:bg-west-maroon/40 text-west-beige px-8 py-3.5 rounded-full border-2 border-west-tan/70 shadow-[0_6px_16px_rgba(0,0,0,0.28)] transition-all transform hover:-translate-y-1 hover:border-west-tan flex items-center justify-center gap-2">
+                <a href="#schedule"
+                    class="w-full sm:w-auto font-wood text-sm sm:text-base bg-west-darkwood/70 hover:bg-west-maroon/40 text-west-beige px-8 py-3.5 rounded-full border-2 border-west-tan/70 shadow-[0_6px_16px_rgba(0,0,0,0.28)] transition-all transform hover:-translate-y-1 hover:border-west-tan flex items-center justify-center gap-2">
                     <span>RUNDOWN EVENT</span>
                 </a>
             </div>
         </div>
 
-        <div class="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-west-tan to-transparent opacity-80"></div>
+        <div
+            class="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-west-tan to-transparent opacity-80">
+        </div>
     </header>
 
     <!-- STATS COUNTER SECTION -->
-    <section class="w-full bg-west-boardwood border-y-4 border-west-maroon py-8 stats-section" style="--stats-border-dark: color-mix(in srgb, #66120a 70%, black 30%);">
+    <section class="w-full bg-west-boardwood border-y-4 border-west-maroon py-8 stats-section"
+        style="--stats-border-dark: color-mix(in srgb, #66120a 70%, black 30%);">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div class="p-4 rounded border border-west-tan/20 bg-west-darkwood/50">
                 <p class="text-3xl md:text-4xl font-western text-west-beige">25</p>
@@ -334,7 +414,8 @@
             </div>
             <div class="p-4 rounded border border-west-tan/20 bg-west-darkwood/50">
                 <p class="text-3xl md:text-4xl font-western text-west-beige">4</p>
-                <p class="text-xs font-bold uppercase tracking-widest text-west-denim mt-1">Tingkat (SD, SMP, SMA, UMUM)</p>
+                <p class="text-xs font-bold uppercase tracking-widest text-west-denim mt-1">Tingkat (SD, SMP, SMA, UMUM)
+                </p>
             </div>
         </div>
     </section>
@@ -346,12 +427,20 @@
                 <p class="text-xs uppercase tracking-[0.35em] text-west-beige font-bold">ABOUT FLASH XXV</p>
                 <h2 class="text-3xl md:text-4xl font-western text-west-parchment mt-2">PERSEVERANCE</h2>
             </div>
-            <div class="max-w-4xl mx-auto text-sm md:text-base leading-7 text-west-parchment/90 space-y-4 text-justify md:text-center">
+            <div
+                class="max-w-4xl mx-auto text-sm md:text-base leading-7 text-west-parchment/90 space-y-4 text-justify md:text-center">
                 <p>
-                    <strong>FLASH XXV PERSEVERANCE</strong> adalah event tahunan yang diselenggarakan oleh SMA Negeri Modal Bangsa yang berskala nasional. Tahun ini FLASH XXV kembali dengan tema Wild West yang bertajuk <em>"Sya'ir Cinta Ateueh Peudeuëng Kuasa"</em> / <em>"Membuka gerbang baru menuju dunia yang penuh dengan petualangan, keberanian, dan semangat eksplorasi"</em> serta mengusung tagline <strong>"Satukan semangat, raih kemenangan"</strong>.
+                    <strong>FLASH XXV PERSEVERANCE</strong> adalah event tahunan yang diselenggarakan oleh SMA Negeri
+                    Modal Bangsa yang berskala nasional. Tahun ini FLASH XXV kembali dengan tema Wild West yang bertajuk
+                    <em>"Sya'ir Cinta Ateueh Peudeuëng Kuasa"</em> / <em>"Membuka gerbang baru menuju dunia yang penuh
+                        dengan petualangan, keberanian, dan semangat eksplorasi"</em> serta mengusung tagline
+                    <strong>"Satukan semangat, raih kemenangan"</strong>.
                 </p>
                 <p>
-                    <strong>PERSEVERANCE</strong> melambangkan ketekunan, kegigihan, dan semangat pantang menyerah dalam menghadapi setiap tantangan. Seperti para penjelajah yang berani melintasi wilayah baru, event ini mengajak seluruh peserta dari jenjang SD/MI, SMP/MTs, SMA/MA/SMK, hingga Umum untuk membuktikan kemampuan terbaiknya.
+                    <strong>PERSEVERANCE</strong> melambangkan ketekunan, kegigihan, dan semangat pantang menyerah dalam
+                    menghadapi setiap tantangan. Seperti para penjelajah yang berani melintasi wilayah baru, event ini
+                    mengajak seluruh peserta dari jenjang SD/MI, SMP/MTs, SMA/MA/SMK, hingga Umum untuk membuktikan
+                    kemampuan terbaiknya.
                 </p>
             </div>
         </div>
@@ -362,14 +451,16 @@
         <div class="rounded-3xl border-4 border-west-maroon bg-west-darkwood/90 p-6 md:p-8">
             <div class="text-center mb-8">
                 <h2 class="text-3xl md:text-4xl font-western text-west-beige">★ EVENT RUNDOWN ★</h2>
-                <p class="text-xs text-west-parchment/70 uppercase tracking-widest mt-1">Catat tanggal resmi dan jangan sampai terlewat!</p>
+                <p class="text-xs text-west-parchment/70 uppercase tracking-widest mt-1">Catat tanggal resmi dan jangan
+                    sampai terlewat!</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="p-5 rounded-xl border-2 border-west-denim bg-west-boardwood text-center">
                     <div class="text-xs font-bold text-west-denim uppercase mb-1">Tahap 1</div>
                     <h3 class="font-wood text-lg text-west-beige">Pembukaan Pendaftaran</h3>
                     <p class="text-xl font-western text-west-tan mt-2">11 Agustus 2026</p>
-                    <p class="text-xs text-west-parchment/60 mt-1">Registrasi online dibuka untuk seluruh cabang lomba.</p>
+                    <p class="text-xs text-west-parchment/60 mt-1">Registrasi online dibuka untuk seluruh cabang lomba.
+                    </p>
                 </div>
                 <div class="p-5 rounded-xl border-2 border-west-denim bg-west-boardwood text-center">
                     <div class="text-xs font-bold text-west-denim uppercase mb-1">Tahap 2</div>
@@ -387,7 +478,8 @@
                     <div class="text-xs font-bold text-west-beige uppercase mb-1">Tahap Akhir</div>
                     <h3 class="font-wood text-lg text-west-beige">Pelaksanaan Event</h3>
                     <p class="text-xl font-western text-west-tan mt-2">5 - 9 September 2026</p>
-                    <p class="text-xs text-west-parchment/60 mt-1">Rangkaian lomba, penampilan, bazar & grand ceremony.</p>
+                    <p class="text-xs text-west-parchment/60 mt-1">Rangkaian lomba, penampilan, bazar & grand ceremony.
+                    </p>
                 </div>
             </div>
         </div>
@@ -397,11 +489,14 @@
     <main id="wanted-board" class="flex-1 w-full py-8 px-2 md:px-8 max-w-7xl mx-auto">
         <div class="competition-board rounded-3xl border-8 border-[#60241E] p-6 md:p-10 relative overflow-hidden">
             <div class="text-center mb-12 border-b-4 border-dashed border-west-tan/40 pb-6">
-                <div class="inline-block bg-west-darkwood border-4 border-west-denim px-8 py-3 rounded-xl shadow-2xl mb-3">
-                    <h2 class="text-3xl md:text-5xl font-western text-west-beige tracking-wider">★ BOARD OF COMPETITION LIST ★</h2>
+                <div
+                    class="inline-block bg-west-darkwood border-4 border-west-denim px-8 py-3 rounded-xl shadow-2xl mb-3">
+                    <h2 class="text-3xl md:text-5xl font-western text-west-beige tracking-wider">★ BOARD OF COMPETITION
+                        LIST ★</h2>
                 </div>
                 <p class="text-west-parchment/80 font-typewriter text-sm md:text-base max-w-2xl mx-auto mt-2">
-                    Klik pada poster di bawah untuk membuka form pendaftaran, rincian lomba, dan Petunjuk Teknis (Juknis)!
+                    Klik pada poster di bawah untuk membuka form pendaftaran, rincian lomba, dan Petunjuk Teknis
+                    (Juknis)!
                 </p>
             </div>
 
@@ -415,7 +510,8 @@
         <div class="rounded-3xl border-4 border-west-maroon bg-west-darkwood/90 p-6 md:p-8">
             <div class="text-center mb-8">
                 <h2 class="text-3xl md:text-4xl font-western text-west-beige">★ FREQUENTLY ASKED QUESTIONS ★</h2>
-                <p class="text-xs text-west-parchment/70 uppercase tracking-widest mt-1">Pertanyaan umum seputar FLASH XXV PERSEVERANCE</p>
+                <p class="text-xs text-west-parchment/70 uppercase tracking-widest mt-1">Pertanyaan umum seputar FLASH
+                    XXV PERSEVERANCE</p>
             </div>
 
             <div class="space-y-4 max-w-4xl mx-auto text-sm">
@@ -424,8 +520,11 @@
                         Apakah peserta dari luar daerah ditanggung akomodasi dan konsumsinya?
                         <span class="text-west-denim group-open:rotate-180 transition">▼</span>
                     </summary>
-                    <p class="text-west-parchment/80 mt-3 text-xs md:text-sm leading-relaxed border-t border-west-tan/10 pt-3">
-                        Tidak. Seluruh biaya akomodasi, transportasi, dan kebutuhan pribadi peserta di luar fasilitas resmi perlombaan tidak ditanggung oleh panitia. Namun, panitia menyediakan seksi Pusat Informasi & Konsumsi untuk membantu arahan lokasi dan kebutuhan konsumsi harian lomba.
+                    <p
+                        class="text-west-parchment/80 mt-3 text-xs md:text-sm leading-relaxed border-t border-west-tan/10 pt-3">
+                        Tidak. Seluruh biaya akomodasi, transportasi, dan kebutuhan pribadi peserta di luar fasilitas
+                        resmi perlombaan tidak ditanggung oleh panitia. Namun, panitia menyediakan seksi Pusat Informasi
+                        & Konsumsi untuk membantu arahan lokasi dan kebutuhan konsumsi harian lomba.
                     </p>
                 </details>
 
@@ -434,8 +533,10 @@
                         Metode pembayaran pendaftaran apa saja yang tersedia?
                         <span class="text-west-denim group-open:rotate-180 transition">▼</span>
                     </summary>
-                    <p class="text-west-parchment/80 mt-3 text-xs md:text-sm leading-relaxed border-t border-west-tan/10 pt-3">
-                        Pembayaran dapat dilakukan secara online melalui Transfer ke Bank BSI: 7219049204 a.n. OSIS SMAN Modal Bangsa, atau secara offline langsung di SMA Negeri Modal Bangsa.
+                    <p
+                        class="text-west-parchment/80 mt-3 text-xs md:text-sm leading-relaxed border-t border-west-tan/10 pt-3">
+                        Pembayaran dapat dilakukan secara online melalui Transfer ke Bank BSI: 7219049204 a.n. OSIS SMAN
+                        Modal Bangsa, atau secara offline langsung di SMA Negeri Modal Bangsa.
                     </p>
                 </details>
 
@@ -444,8 +545,10 @@
                         Bolehkah satu peserta mendaftar lebih dari satu cabang lomba?
                         <span class="text-west-denim group-open:rotate-180 transition">▼</span>
                     </summary>
-                    <p class="text-west-parchment/80 mt-3 text-xs md:text-sm leading-relaxed border-t border-west-tan/10 pt-3">
-                        Boleh, selama jadwal pelaksanaan lomba tidak saling berbenturan dan peserta memenuhi kualifikasi persyaratannya.
+                    <p
+                        class="text-west-parchment/80 mt-3 text-xs md:text-sm leading-relaxed border-t border-west-tan/10 pt-3">
+                        Boleh, selama jadwal pelaksanaan lomba tidak saling berbenturan dan peserta memenuhi kualifikasi
+                        persyaratannya.
                     </p>
                 </details>
 
@@ -454,8 +557,11 @@
                         Siapa yang menjadi juri dalam perlombaan FLASH XXV?
                         <span class="text-west-denim group-open:rotate-180 transition">▼</span>
                     </summary>
-                    <p class="text-west-parchment/80 mt-3 text-xs md:text-sm leading-relaxed border-t border-west-tan/10 pt-3">
-                        Untuk menjaga netralitas dan objektivitas penilaian, juri FLASH XXV berasal dari pihak profesional eksternal, akademisi, serta praktisi independen yang ahli di bidangnya masing-masing.
+                    <p
+                        class="text-west-parchment/80 mt-3 text-xs md:text-sm leading-relaxed border-t border-west-tan/10 pt-3">
+                        Untuk menjaga netralitas dan objektivitas penilaian, juri FLASH XXV berasal dari pihak
+                        profesional eksternal, akademisi, serta praktisi independen yang ahli di bidangnya
+                        masing-masing.
                     </p>
                 </details>
             </div>
@@ -463,12 +569,14 @@
     </section>
 
     <!-- FOOTER LENGKAP & KONTAK -->
-    <footer id="contact" class="bg-west-darkwood border-t-8 border-west-maroon pt-12 pb-8 text-west-parchment/80 text-sm">
+    <footer id="contact"
+        class="bg-west-darkwood border-t-8 border-west-maroon pt-12 pb-8 text-west-parchment/80 text-sm">
         <div class="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div>
                 <h3 class="font-western text-2xl text-west-beige mb-2">FLASH XXV PERSEVERANCE</h3>
                 <p class="text-xs leading-relaxed text-west-parchment/70">
-                    Event tahunan SMA Negeri Modal Bangsa berskala nasional. Mewadahi generasi muda dalam berkompetisi, berkreasi, dan meraih prestasi setinggi-tingginya.
+                    Event tahunan SMA Negeri Modal Bangsa berskala nasional. Mewadahi generasi muda dalam berkompetisi,
+                    berkreasi, dan meraih prestasi setinggi-tingginya.
                 </p>
                 <p class="text-xs text-west-denim font-bold mt-3">"Satukan semangat, raih kemenangan"</p>
             </div>
@@ -486,10 +594,15 @@
             <div>
                 <h4 class="font-wood text-west-beige uppercase mb-3">Contact Info</h4>
                 <div class="space-y-2 text-xs">
-                    <p>📍 <strong>Alamat:</strong> SMA Negeri Modal Bangsa, Jalan Bandara Sultan Iskandar Muda, Blang Bintang, Aceh Besar, Aceh.</p>
-                    <p>📞 <strong>Contact Person:</strong> <a href="tel:+6281360056023" class="hover:text-west-denim transition">+62 813-6005-6023</a> <span class="text-xs text-west-parchment/70">(Seksi Acara FLASH)</span></p>
-                    <p>📸 <strong>Instagram:</strong> <a href="https://instagram.com/flashmosa" target="_blank" rel="noopener" class="hover:text-west-denim transition">📷 @flashmosa</a></p>
-                    <p>🎵 <strong>TikTok:</strong> <a href="https://www.tiktok.com/@flashmosa" target="_blank" rel="noopener" class="hover:text-west-denim transition">🎶 @flashmosa</a></p>
+                    <p>📍 <strong>Alamat:</strong> SMA Negeri Modal Bangsa, Jalan Bandara Sultan Iskandar Muda, Blang
+                        Bintang, Aceh Besar, Aceh.</p>
+                    <p>📞 <strong>Contact Person:</strong> <a href="tel:+6281360056023"
+                            class="hover:text-west-denim transition">+62 813-6005-6023</a> <span
+                            class="text-xs text-west-parchment/70">(Seksi Acara FLASH)</span></p>
+                    <p>📸 <strong>Instagram:</strong> <a href="https://instagram.com/flashmosa" target="_blank"
+                            rel="noopener" class="hover:text-west-denim transition">📷 @flashmosa</a></p>
+                    <p>🎵 <strong>TikTok:</strong> <a href="https://www.tiktok.com/@flashmosa" target="_blank"
+                            rel="noopener" class="hover:text-west-denim transition">🎶 @flashmosa</a></p>
                 </div>
             </div>
         </div>
@@ -501,30 +614,39 @@
 
     <!-- REGISTRATION POPUP MODAL -->
     <div id="modal-overlay" class="fixed inset-0 bg-black/85 hidden z-50 flex items-center justify-center p-4">
-        <div class="modal-content wanted-poster w-full max-w-md rounded-lg border-8 border-west-maroon p-6 relative shadow-2xl">
-            <button onclick="closePopup()" class="absolute top-2 right-2 font-wood text-lg bg-west-maroon hover:bg-red-800 text-white w-9 h-9 rounded-full border-2 border-west-darkwood flex items-center justify-center transition">
+        <div
+            class="modal-content wanted-poster w-full max-w-md rounded-lg border-8 border-west-maroon p-6 relative shadow-2xl">
+            <button onclick="closePopup()"
+                class="absolute top-2 right-2 font-wood text-lg bg-west-maroon hover:bg-red-800 text-white w-9 h-9 rounded-full border-2 border-west-darkwood flex items-center justify-center transition">
                 ✕
             </button>
-            
+
             <div class="text-center mb-6">
-                <span class="text-west-dustyred font-western text-sm tracking-widest block uppercase mb-1">★ WANTED FOR CHAMPION ★</span>
+                <span class="text-west-dustyred font-western text-sm tracking-widest block uppercase mb-1">★ WANTED FOR
+                    CHAMPION ★</span>
                 <h3 id="popup-abbr" class="text-4xl font-western text-west-darkwood tracking-wide mb-1">ABBR</h3>
-                <h4 id="popup-title" class="text-lg font-bold text-west-tan uppercase leading-tight">Nama Lomba Lengkap</h4>
-                <p id="popup-category" class="text-xs font-bold uppercase tracking-wider text-gray-700 mt-1">Kategori: SMA</p>
+                <h4 id="popup-title" class="text-lg font-bold text-west-tan uppercase leading-tight">Nama Lomba Lengkap
+                </h4>
+                <p id="popup-category" class="text-xs font-bold uppercase tracking-wider text-gray-700 mt-1">Kategori:
+                    SMA</p>
                 <div class="h-0.5 bg-west-darkwood/20 w-32 mx-auto mt-3"></div>
             </div>
 
-            <div id="popup-cp-block" class="bg-amber-950/10 border border-dashed border-west-darkwood p-3 rounded mb-6 text-center">
+            <div id="popup-cp-block"
+                class="bg-amber-950/10 border border-dashed border-west-darkwood p-3 rounded mb-6 text-center">
                 <p class="text-sm font-bold uppercase tracking-wider popup-contact-brown">Penanggung Jawab Lomba:</p>
-                <div id="popup-cp" class="text-lg font-bold text-west-dustyred mt-1 popup-contact-brown">Seksi Acara FLASH XXV</div>
+                <div id="popup-cp" class="text-lg font-bold text-west-dustyred mt-1 popup-contact-brown">Seksi Acara
+                    FLASH XXV</div>
             </div>
 
             <div class="space-y-3">
-                <a id="link-form" href="#" target="_blank" class="block text-center font-wood text-white bg-west-maroon hover:bg-red-800 px-5 py-3.5 rounded border-2 border-west-darkwood shadow transition">
+                <a id="link-form" href="#" target="_blank"
+                    class="block text-center font-wood text-white bg-west-maroon hover:bg-red-800 px-5 py-3.5 rounded border-2 border-west-darkwood shadow transition">
                     ISI FORM PENDAFTARAN
                 </a>
-                
-                <a id="link-juknis" href="#" target="_blank" class="block text-center font-bold text-west-darkwood bg-transparent hover:bg-west-darkwood/10 px-5 py-3.5 rounded border-2 border-west-darkwood transition">
+
+                <a id="link-juknis" href="#" target="_blank"
+                    class="block text-center font-bold text-west-darkwood bg-transparent hover:bg-west-darkwood/10 px-5 py-3.5 rounded border-2 border-west-darkwood transition">
                     UNDUH JUKNIS LOMBA (PDF)
                 </a>
             </div>
@@ -697,7 +819,7 @@
                     <p class="text-sm font-bold uppercase tracking-wider popup-contact-brown">Penanggung Jawab Lomba:</p>
                     <div class="text-lg font-bold text-west-dustyred mt-1 popup-contact-brown">${contact.name} <span class="text-sm font-normal popup-contact-brown">— ${contact.role}</span></div>
                     <div class="mt-2 text-sm text-west-parchment/80">
-                        <div>📞 <a href="tel:${contact.phone.replace(/\s+/g,'')}" class="hover:text-west-denim transition popup-contact-brown text-base">${contact.phone}</a></div>
+                        <div>📞 <a href="tel:${contact.phone.replace(/\s+/g, '')}" class="hover:text-west-denim transition popup-contact-brown text-base">${contact.phone}</a></div>
                     </div>
                 `;
                 cpBlock.innerHTML = html;
@@ -727,7 +849,7 @@
         // AUTO-PLAY AUDIO ENGINE (SILENT BACKGROUND)
         function playBackgroundAudio() {
             if (!backgroundAudio || isAudioPlaying) return;
-            
+
             backgroundAudio.volume = 0.45;
             backgroundAudio.play().then(() => {
                 isAudioPlaying = true;
@@ -832,4 +954,5 @@
         window.closePopup = closePopup;
     </script>
 </body>
+
 </html>
