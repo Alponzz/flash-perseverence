@@ -743,19 +743,6 @@
                 const percentText = document.getElementById('loader-percentage');
                 let progress = 0;
 
-                const interval = setInterval(() => {
-                    progress += Math.floor(Math.random() * 15) + 8;
-                    if (progress >= 100) {
-                        progress = 100;
-                        clearInterval(interval);
-                        setTimeout(() => {
-                            loaderScreen.classList.add('opacity-0');
-                            setTimeout(() => { loaderScreen.style.display = 'none'; }, 700);
-                        }, 300);
-                    }
-                    percentText.innerText = progress + '% PREPARED';
-                }, 70);
-
                 initModalElements();
                 renderCompetitionBoard();
 
@@ -780,33 +767,11 @@
                 const hamburgerIcon = document.getElementById('hamburger-icon');
                 const closeIcon = document.getElementById('close-icon');
                 const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-
-                const originalLoaderEnd = () => {
-                    loaderScreen.classList.add('opacity-0');
-                    setTimeout(() => {
-                        loaderScreen.style.display = 'none';
-                    }, 700);
-                    playBackgroundAudio();
-                };
-
-                const interval = setInterval(() => {
-                    progress += Math.floor(Math.random() * 15) + 8;
-                    if (progress >= 100) {
-                        progress = 100;
-                        clearInterval(interval);
-                        setTimeout(originalLoaderEnd, 300);
-                    }
-                    percentText.innerText = progress + '% PREPARED';
-                }, 70);
-
-                mobileMenuButton && mobileMenuButton.addEventListener('click', toggleMobileMenu);
-
-                const mobileMenu = document.getElementById('mobile-menu');
-                const hamburgerIcon = document.getElementById('hamburger-icon');
-                const closeIcon = document.getElementById('close-icon');
-                const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+                const navbar = document.querySelector('nav');
+                let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
 
                 function toggleMobileMenu() {
+                    if (!mobileMenu || !hamburgerIcon || !closeIcon || !mobileMenuButton) return;
                     const isOpen = mobileMenu.classList.contains('flex');
                     mobileMenu.classList.toggle('flex', !isOpen);
                     mobileMenu.classList.toggle('hidden', isOpen);
@@ -815,10 +780,27 @@
                     mobileMenuButton.setAttribute('aria-expanded', String(!isOpen));
                 }
 
-                if (mobileMenuButton && mobileMenu) {
-                    mobileMenuButton.addEventListener('click', toggleMobileMenu);
+                function endLoader() {
+                    if (!loaderScreen) return;
+                    loaderScreen.classList.add('opacity-0');
+                    setTimeout(() => {
+                        loaderScreen.style.display = 'none';
+                    }, 700);
+                    playBackgroundAudio();
                 }
 
+                const loaderInterval = setInterval(() => {
+                    progress = Math.min(progress + Math.floor(Math.random() * 15) + 8, 100);
+                    if (percentText) {
+                        percentText.innerText = progress + '% PREPARED';
+                    }
+                    if (progress >= 100) {
+                        clearInterval(loaderInterval);
+                        setTimeout(endLoader, 300);
+                    }
+                }, 70);
+
+                mobileMenuButton?.addEventListener('click', toggleMobileMenu);
                 mobileLinks.forEach((link) => {
                     link.addEventListener('click', () => {
                         if (window.innerWidth < 768) {
@@ -832,9 +814,6 @@
                         if (event.target === modalOverlay) closePopup();
                     });
                 }
-
-                const navbar = document.querySelector('nav');
-                let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
 
                 window.addEventListener('scroll', () => {
                     const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
