@@ -208,7 +208,7 @@
     </head>
     <body class="font-typewriter antialiased overflow-x-hidden wood-wall min-h-screen flex flex-col">
 
-        <audio id="background-audio" loop preload="auto" autoplay playsinline style="display:none;">
+        <audio id="background-audio" loop preload="auto" playsinline style="display:none;">
             <source src="koboi-bg.mp3" type="audio/mpeg">
             <source src="https://cdn.pixabay.com/download/audio/2023/07/08/audio_0f4d7ac32a.mp3?filename=western-cowboy-old-town-123422.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
@@ -274,6 +274,10 @@
                     <a href="#faq" class="hover:text-west-denim transition">FAQ</a>
                     <a href="#contact" class="hover:text-west-denim transition">KONTAK</a>
                 </div>
+
+                <button id="sound-toggle" class="inline-flex items-center gap-2 font-wood text-xs sm:text-sm bg-west-darkwood/70 hover:bg-west-maroon/40 text-west-beige px-4 py-2 rounded-full border-2 border-west-tan/70 shadow-[0_6px_12px_rgba(0,0,0,0.25)] transition">
+                    🔊 MAIN
+                </button>
             </div>
 
             <div id="mobile-menu" class="hidden md:hidden flex-col gap-3 pt-3 pb-2 border-t border-west-tan/20 mt-2 font-wood text-xs sm:text-sm text-west-parchment text-center">
@@ -635,6 +639,7 @@
             let linkForm = null;
             let linkJuknis = null;
             let backgroundAudio = null;
+            let soundToggleButton = null;
             let isAudioInitialized = false;
 
             function slugify(value) {
@@ -747,6 +752,7 @@
                 renderCompetitionBoard();
 
                 backgroundAudio = document.getElementById('background-audio');
+                soundToggleButton = document.getElementById('sound-toggle');
 
                 function initBackgroundAudio() {
                     if (isAudioInitialized || !backgroundAudio) return;
@@ -757,12 +763,35 @@
                     backgroundAudio.addEventListener('error', (event) => console.warn('Audio error', event));
                 }
 
+                function setSoundButtonState(isPlaying) {
+                    if (!soundToggleButton) return;
+                    soundToggleButton.innerText = isPlaying ? '🔇 MATI' : '🔊 MAIN';
+                }
+
                 function playBackgroundAudio() {
                     if (!backgroundAudio) return;
                     initBackgroundAudio();
-                    backgroundAudio.play().catch((error) => {
+                    backgroundAudio.play().then(() => {
+                        setSoundButtonState(true);
+                    }).catch((error) => {
                         console.warn('Autoplay blocked, waiting for user interaction', error);
+                        setSoundButtonState(false);
                     });
+                }
+
+                function pauseBackgroundAudio() {
+                    if (!backgroundAudio) return;
+                    backgroundAudio.pause();
+                    setSoundButtonState(false);
+                }
+
+                function toggleBackgroundAudio() {
+                    if (!backgroundAudio) return;
+                    if (backgroundAudio.paused) {
+                        playBackgroundAudio();
+                    } else {
+                        pauseBackgroundAudio();
+                    }
                 }
 
                 const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -804,6 +833,8 @@
                 }, 70);
 
                 mobileMenuButton?.addEventListener('click', toggleMobileMenu);
+                soundToggleButton?.addEventListener('click', toggleBackgroundAudio);
+                setSoundButtonState(true);
                 mobileLinks.forEach((link) => {
                     link.addEventListener('click', () => {
                         if (window.innerWidth < 768) {
