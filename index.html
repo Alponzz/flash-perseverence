@@ -208,7 +208,7 @@
     </head>
     <body class="font-typewriter antialiased overflow-x-hidden wood-wall min-h-screen flex flex-col">
 
-        <audio id="background-audio" loop preload="auto" class="hidden">
+        <audio id="background-audio" loop preload="auto" autoplay playsinline style="display:none;">
             <source src="koboi-bg.mp3" type="audio/mpeg">
             <source src="https://cdn.pixabay.com/download/audio/2023/07/08/audio_0f4d7ac32a.mp3?filename=western-cowboy-old-town-123422.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
@@ -752,13 +752,16 @@
                     if (isAudioInitialized || !backgroundAudio) return;
                     isAudioInitialized = true;
                     backgroundAudio.volume = 0.45;
+                    backgroundAudio.load();
+                    backgroundAudio.addEventListener('play', () => console.debug('Audio started'));
+                    backgroundAudio.addEventListener('error', (event) => console.warn('Audio error', event));
                 }
 
                 function playBackgroundAudio() {
                     if (!backgroundAudio) return;
                     initBackgroundAudio();
-                    backgroundAudio.play().catch(() => {
-                        /* Autoplay may be blocked; user interaction may be required on some browsers. */
+                    backgroundAudio.play().catch((error) => {
+                        console.warn('Autoplay blocked, waiting for user interaction', error);
                     });
                 }
 
