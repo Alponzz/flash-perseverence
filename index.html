@@ -202,7 +202,7 @@
 </head>
 <body class="font-typewriter antialiased overflow-x-hidden wood-wall min-h-screen flex flex-col">
 
-    <!-- BACKGROUND AUDIO ELEMENT -->
+    <!-- AUDIO BACKGROUND ELEMENT -->
     <audio id="background-audio" loop preload="auto" playsinline style="display:none;">
         <source src="koboi-bg.mp3" type="audio/mpeg">
         <source src="https://codeskulptor-demos.commondatastorage.googleapis.com/desolate_world.mp3" type="audio/mpeg">
@@ -256,20 +256,12 @@
                 <img src="Proyek Baru 300 [DDDA953].webp" alt="ICON FLASH FONT VER WEB" class="w-28 sm:w-32 md:w-36 h-auto object-contain drop-shadow-lg transform translate-y-[2px]">
             </a>
 
-            <div class="flex items-center gap-2">
-                <!-- TOMBOL TOGGLE AUDIO MUSIK -->
-                <button id="audio-toggle-btn" title="Toggle Musik Background" class="flex items-center gap-1.5 bg-west-maroon hover:bg-red-900 text-west-beige px-3 py-1 rounded-full border border-west-tan/40 text-xs font-wood transition shadow">
-                    <span id="audio-icon">🔇</span>
-                    <span id="audio-text" class="hidden sm:inline">MUSIK: OFF</span>
-                </button>
-
-                <button id="mobile-menu-button" aria-label="Toggle Menu" class="md:hidden text-west-beige hover:text-west-denim focus:outline-none p-0.5">
-                    <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
-                        <path id="hamburger-icon" fill-rule="evenodd" clip-rule="evenodd" d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/>
-                        <path id="close-icon" class="hidden" fill-rule="evenodd" clip-rule="evenodd" d="M18.3 5.71a1 1 0 0 0-1.42 0L12 10.59 7.12 5.71a1 1 0 0 0-1.42 1.42L10.59 12l-4.89 4.88a1 1 0 1 0 1.42 1.42L12 13.41l4.88 4.89a1 1 0 0 0 1.42-1.42L13.41 12l4.89-4.88a1 1 0 0 0 0-1.41z"/>
-                    </svg>
-                </button>
-            </div>
+            <button id="mobile-menu-button" aria-label="Toggle Menu" class="md:hidden text-west-beige hover:text-west-denim focus:outline-none p-0.5">
+                <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+                    <path id="hamburger-icon" fill-rule="evenodd" clip-rule="evenodd" d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/>
+                    <path id="close-icon" class="hidden" fill-rule="evenodd" clip-rule="evenodd" d="M18.3 5.71a1 1 0 0 0-1.42 0L12 10.59 7.12 5.71a1 1 0 0 0-1.42 1.42L10.59 12l-4.89 4.88a1 1 0 1 0 1.42 1.42L12 13.41l4.88 4.89a1 1 0 0 0 1.42-1.42L13.41 12l4.89-4.88a1 1 0 0 0 0-1.41z"/>
+                </svg>
+            </button>
 
             <div class="hidden md:flex items-center gap-6 font-wood text-xs md:text-sm text-west-parchment">
                 <a href="#about" class="hover:text-west-denim transition">TENTANG</a>
@@ -732,38 +724,18 @@
             }
         }
 
-        // FUNGSI UTAMA CONTROL AUDIO
-        function updateAudioUI(playing) {
-            const audioIcon = document.getElementById('audio-icon');
-            const audioText = document.getElementById('audio-text');
-            if (audioIcon) audioIcon.innerText = playing ? '🔊' : '🔇';
-            if (audioText) audioText.innerText = playing ? 'MUSIK: ON' : 'MUSIK: OFF';
-        }
-
+        // AUTO-PLAY AUDIO ENGINE (SILENT BACKGROUND)
         function playBackgroundAudio() {
             if (!backgroundAudio || isAudioPlaying) return;
             
             backgroundAudio.volume = 0.45;
             backgroundAudio.play().then(() => {
                 isAudioPlaying = true;
-                updateAudioUI(true);
-                console.log('🔊 Background audio berhasil diputar!');
+                console.log('🔊 Audio background berhasil berbunyi otomatis!');
             }).catch((error) => {
-                console.warn('⚠️ Autoplay diblokir browser saat ini. Audio akan aktif pada klik/tap/scroll pertama pengguna.', error);
+                console.warn('⚠️ Autoplay langsung diblokir browser. Menunggu sentuhan/scroll pertama pengguna...', error);
                 isAudioPlaying = false;
-                updateAudioUI(false);
             });
-        }
-
-        function toggleAudio() {
-            if (!backgroundAudio) return;
-            if (isAudioPlaying) {
-                backgroundAudio.pause();
-                isAudioPlaying = false;
-                updateAudioUI(false);
-            } else {
-                playBackgroundAudio();
-            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -776,21 +748,14 @@
 
             backgroundAudio = document.getElementById('background-audio');
 
-            // DETEKSI INTERAKSI PERTAMA PENGGUNA (Jika browser memblokir auto-play awal)
-            const unlockAudioOnInteraction = () => {
+            // UNLOCK OTOMATIS: Jika autoplay awal diblokir, begitu layar disentuh/discroll audio langsung bunyi!
+            const unlockAudioSilently = () => {
                 if (!isAudioPlaying) {
                     playBackgroundAudio();
                 }
             };
             ['click', 'touchstart', 'scroll', 'keydown'].forEach((eventType) => {
-                window.addEventListener(eventType, unlockAudioOnInteraction, { once: true });
-            });
-
-            // TOMBOL MANUAL NAVBAR
-            const audioToggleBtn = document.getElementById('audio-toggle-btn');
-            audioToggleBtn?.addEventListener('click', (e) => {
-                e.stopPropagation();
-                toggleAudio();
+                window.addEventListener(eventType, unlockAudioSilently, { once: true });
             });
 
             // FUNGSI SELESAI LOADING
@@ -801,7 +766,7 @@
                     loaderScreen.style.display = 'none';
                 }, 700);
 
-                // CEK AUTO-ON AUDIO SAAT LOADING SELESAI
+                // LANGSUNG ATTEMPT PLAY AUDIO AUTO ON
                 playBackgroundAudio();
             }
 
