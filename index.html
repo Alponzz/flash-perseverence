@@ -253,6 +253,24 @@
         .popup-contact-brown {
             color: #60241E !important;
         }
+
+        /* Highlight animation when navigating to download targets */
+        :target {
+            animation: targetGlow 2s ease-in-out;
+        }
+
+        @keyframes targetGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 transparent;
+            }
+
+            50% {
+                box-shadow: 0 0 20px 4px rgba(232, 216, 183, 0.7);
+                border-color: #e8d8b7 !important;
+            }
+        }
     </style>
 </head>
 
@@ -378,15 +396,20 @@
             </div>
 
             <div
-                class="hero-buttons-container flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md px-4 mt-2">
+                class="hero-buttons-container flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 w-full max-w-2xl px-4 mt-2">
                 <a href="#wanted-board"
-                    class="w-full sm:w-auto font-wood text-sm sm:text-base bg-west-denim/95 hover:bg-blue-800 text-white px-8 py-3.5 rounded-full border border-west-tan/60 shadow-[0_6px_16px_rgba(0,0,0,0.35)] transition-all transform hover:-translate-y-1 hover:shadow-2xl flex items-center justify-center gap-2">
+                    class="w-full sm:w-auto font-wood text-xs sm:text-sm md:text-base bg-west-denim/95 hover:bg-blue-800 text-white px-6 sm:px-8 py-3.5 rounded-full border border-west-tan/60 shadow-[0_6px_16px_rgba(0,0,0,0.35)] transition-all transform hover:-translate-y-1 hover:shadow-2xl flex items-center justify-center gap-2">
                     <span>DAFTAR SEKARANG</span>
                 </a>
 
                 <a href="#schedule"
-                    class="w-full sm:w-auto font-wood text-sm sm:text-base bg-west-darkwood/70 hover:bg-west-maroon/40 text-west-beige px-8 py-3.5 rounded-full border-2 border-west-tan/70 shadow-[0_6px_16px_rgba(0,0,0,0.28)] transition-all transform hover:-translate-y-1 hover:border-west-tan flex items-center justify-center gap-2">
+                    class="w-full sm:w-auto font-wood text-xs sm:text-sm md:text-base bg-west-darkwood/70 hover:bg-west-maroon/40 text-west-beige px-6 sm:px-8 py-3.5 rounded-full border-2 border-west-tan/70 shadow-[0_6px_16px_rgba(0,0,0,0.28)] transition-all transform hover:-translate-y-1 hover:border-west-tan flex items-center justify-center gap-2">
                     <span>RUNDOWN EVENT</span>
+                </a>
+
+                <a href="#download-rundown"
+                    class="w-full sm:w-auto font-wood text-xs sm:text-sm md:text-base bg-west-dustyred/90 hover:bg-west-maroon text-west-parchment px-6 sm:px-8 py-3.5 rounded-full border-2 border-west-tan/80 shadow-[0_6px_16px_rgba(0,0,0,0.3)] transition-all transform hover:-translate-y-1 hover:border-west-tan flex items-center justify-center gap-2">
+                    <span>UNDUH RUNDOWN</span>
                 </a>
             </div>
         </div>
@@ -571,7 +594,7 @@
     <!-- FOOTER LENGKAP & KONTAK -->
     <footer id="contact"
         class="bg-west-darkwood border-t-8 border-west-maroon pt-12 pb-8 text-west-parchment/80 text-sm">
-        <div class="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             <div>
                 <h3 class="font-western text-2xl text-west-beige mb-2">FLASH XXV PERSEVERANCE</h3>
                 <p class="text-xs leading-relaxed text-west-parchment/70">
@@ -588,7 +611,24 @@
                     <li><a href="#schedule" class="hover:text-west-denim transition">Jadwal & Milestones</a></li>
                     <li><a href="#wanted-board" class="hover:text-west-denim transition">Daftar Cabang Lomba</a></li>
                     <li><a href="#faq" class="hover:text-west-denim transition">Pertanyaan Umum (FAQ)</a></li>
+                    <li><a href="#download-section" class="hover:text-west-denim transition">Berkas & Unduhan</a></li>
                 </ul>
+            </div>
+
+            <div id="download-section">
+                <h4 class="font-wood text-west-beige uppercase mb-3">Link Unduhan</h4>
+                <div class="space-y-2 text-xs">
+                    <p id="download-rundown">📅 <strong>Rundown Event :</strong> <a
+                            href="https://drive.google.com/file/d/1XP3H7r6FbVz_F1ErEW82zQF7n96XdQPq/view?usp=drive_link"
+                            target="_blank" rel="noopener" class="hover:text-west-denim transition"> Unduh Rundown
+                            (PDF)</a>
+                    </p>
+                    <p id="download-juknis">📜 <strong>Juknis Umum :</strong> <a
+                            href="https://drive.google.com/file/d/1H1fmtI7FyN38fL0Uit9mebFXRDTnU6FP/view?usp=drive_link"
+                            target="_blank" rel="noopener" class="hover:text-west-denim transition"> Unduh Juknis
+                            (PDF)</a>
+                    </p>
+                </div>
             </div>
 
             <div>
@@ -746,6 +786,7 @@
         let linkJuknis = null;
         let backgroundAudio = null;
         let isAudioPlaying = false;
+        let wasPlayingBeforeHidden = false;
 
         function slugify(value) {
             return value.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -848,16 +889,26 @@
 
         // AUTO-PLAY AUDIO ENGINE (SILENT BACKGROUND)
         function playBackgroundAudio() {
-            if (!backgroundAudio || isAudioPlaying) return;
+            if (!backgroundAudio) return;
 
-            backgroundAudio.volume = 0.45;
-            backgroundAudio.play().then(() => {
-                isAudioPlaying = true;
-                console.log('🔊 Audio background berhasil berbunyi otomatis!');
-            }).catch((error) => {
-                console.warn('⚠️ Autoplay langsung diblokir browser. Menunggu sentuhan/scroll pertama pengguna...', error);
+            backgroundAudio.volume = 0.75;
+            const playPromise = backgroundAudio.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    isAudioPlaying = true;
+                    console.log('🔊 Audio background berbunyi otomatis (Volume 75%)');
+                }).catch((error) => {
+                    console.warn('⚠️ Autoplay diblokir browser. Menunggu sentuhan/scroll pertama pengguna...', error);
+                    isAudioPlaying = false;
+                });
+            }
+        }
+
+        function pauseBackgroundAudio() {
+            if (backgroundAudio && !backgroundAudio.paused) {
+                backgroundAudio.pause();
                 isAudioPlaying = false;
-            });
+            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -869,6 +920,9 @@
             renderCompetitionBoard();
 
             backgroundAudio = document.getElementById('background-audio');
+            if (backgroundAudio) {
+                backgroundAudio.volume = 0.75;
+            }
 
             // UNLOCK OTOMATIS: Jika autoplay awal diblokir, begitu layar disentuh/discroll audio langsung bunyi!
             const unlockAudioSilently = () => {
@@ -876,8 +930,31 @@
                     playBackgroundAudio();
                 }
             };
-            ['click', 'touchstart', 'scroll', 'keydown'].forEach((eventType) => {
-                window.addEventListener(eventType, unlockAudioSilently, { once: true });
+            ['click', 'touchstart', 'pointerdown', 'keydown', 'scroll'].forEach((eventType) => {
+                window.addEventListener(eventType, unlockAudioSilently, { passive: true });
+            });
+
+            // PAUSE SAAT GANTI TAB ATAU KELUAR APLIKASI, RESUME SAAT KEMBALI
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    if (isAudioPlaying || (backgroundAudio && !backgroundAudio.paused)) {
+                        wasPlayingBeforeHidden = true;
+                        pauseBackgroundAudio();
+                    }
+                } else {
+                    if (wasPlayingBeforeHidden) {
+                        wasPlayingBeforeHidden = false;
+                        playBackgroundAudio();
+                    }
+                }
+            });
+
+            window.addEventListener('pagehide', () => {
+                pauseBackgroundAudio();
+            });
+
+            window.addEventListener('beforeunload', () => {
+                pauseBackgroundAudio();
             });
 
             // FUNGSI SELESAI LOADING
@@ -888,7 +965,7 @@
                     loaderScreen.style.display = 'none';
                 }, 700);
 
-                // LANGSUNG ATTEMPT PLAY AUDIO AUTO ON
+                // LANGSUNG ATTEMPT PLAY AUDIO SETELAH TAMPILAN LOADING SELESAI
                 playBackgroundAudio();
             }
 
